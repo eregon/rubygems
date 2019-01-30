@@ -115,7 +115,11 @@ class Gem::TestCase < (defined?(Minitest::Test) ? Minitest::Test : MiniTest::Uni
 
   attr_accessor :uri # :nodoc:
 
-  TEST_PATH = File.expand_path('../../../test/rubygems', __FILE__)
+  if RUBY_ENGINE == 'truffleruby'
+    TEST_PATH = File.expand_path('../../../../test/mri/tests/rubygems', __FILE__)
+  else
+    TEST_PATH = File.expand_path('../../../test/rubygems', __FILE__)
+  end
 
   def assert_activate(expected, *specs)
     specs.each do |spec|
