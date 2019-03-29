@@ -28,8 +28,9 @@ TOOL = Tool.new(ENV.fetch("TEST_TOOL") { abort "must specify a TEST_TOOL" })
 
 def run(command, args = [])
   Dir.chdir(TOOL.dir) do
+    $stderr.puts '$ ' + [command, *args].join(' ')
     unless system(command, *args)
-      abort "running `#{command} #{args.join(" ")}` failed"
+      abort "running `#{command} #{Array(args).join(" ")}` failed"
     end
   end
 end
