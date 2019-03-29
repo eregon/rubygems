@@ -4,7 +4,7 @@ env:
   - "TEST_TOOL=rubygems"
   #- "TEST_TOOL=bundler RGV=master"
 rvm:
-  - 2.6.1
+  - 2.6.2
   - truffleruby
 before_script:
   - util/ci before_script
