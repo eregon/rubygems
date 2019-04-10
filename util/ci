@@ -69,7 +69,7 @@ when %w(rubocop)
   run('util/rubocop')
 when %w(script)
   if TOOL.rubygems?
-    run('rake', 'test')
+    run('rake', %w(test TESTOPTS=-v))
   else
     run('rake', %w(spec:travis -t))
   end
