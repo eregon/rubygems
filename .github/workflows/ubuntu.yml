@@ -23,5 +23,5 @@ jobs:
       - name: Run Test
         run: |
           rake setup
-          rake test
+          rake test TESTOPTS="-s0 -v"
     timeout-minutes: 60
