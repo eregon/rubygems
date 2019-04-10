@@ -39,7 +39,7 @@ case $1 in
   script)
     if [ "$TEST_TOOL" = "rubygems" ]
     then
-      exec rake test TESTOPTS=-v
+      exec rake test TESTOPTS="-s0 -v"
     else
       cd bundler
       exec rake spec:travis -t
