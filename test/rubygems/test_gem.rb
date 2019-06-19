@@ -992,14 +992,6 @@ class TestGem < Gem::TestCase
     assert_equal Gem::Requirement.default, Gem.env_requirement('qux')
   end
 
-  def test_self_ruby_version_with_patchlevel_less_ancient_rubies
-    util_set_RUBY_VERSION '1.8.5'
-
-    assert_equal Gem::Version.new('1.8.5'), Gem.ruby_version
-  ensure
-    util_restore_RUBY_VERSION
-  end
-
   def test_self_ruby_version_with_release
     util_set_RUBY_VERSION '1.8.6', 287
 
