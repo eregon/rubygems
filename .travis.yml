@@ -8,4 +8,5 @@ rvm:
 before_script:
   - util/ci before_script
 script:
+  - export TRUFFLERUBYOPT="--vm.Xmx3g"
   - util/ci script
