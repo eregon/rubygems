@@ -2,10 +2,24 @@ language: ruby
 dist: xenial
 env:
   - "TEST_TOOL=rubygems"
-rvm:
-  - 2.6.3
-  - truffleruby
+cache:
+  directories:
+    - $HOME/.mx/cache
+matrix:
+  include:
+    #- rvm: 2.6.3
+    - name: TruffleRuby
+      rvm: 2.6.3
+      before_install:
+        - rvm system # 'rvm system' after, otherwise TravisCI tries to 'gem install bundler' and that fails as non-root
+        - pyenv local 2.7.15 # Otherwise pyenv prepends /usr/bin to $PATH, https://github.com/pyenv/pyenv/issues/789
+        - git clone --depth 1 --branch rubygems-fixes https://github.com/eregon/truffleruby.git
+        - git clone --depth 1 --branch current-truffleruby-import https://github.com/eregon/graal.git
+        - truffleruby/tool/jt.rb build
+        - export PATH="$PWD/truffleruby/mxbuild/truffleruby-jvm/jre/languages/ruby/bin:$PATH"
+        - ruby -v
 before_script:
   - util/ci.sh before_script
 script:
+  - free -m
   - util/ci.sh script
