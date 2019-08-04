@@ -9,7 +9,7 @@ desc "Setup Rubygems dev environment"
 task :setup => ["bundler:checkout"] do
   gemspec = Gem::Specification.load(File.expand_path("../rubygems-update.gemspec", __FILE__))
 
-  gemspec.dependencies.each do |dep|
+  (gemspec.dependencies - %w[simplecov rubocop]).each do |dep|
     sh "gem install '#{dep.name}:#{dep.requirement.to_s}' --conservative --no-document"
   end
 end
