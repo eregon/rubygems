@@ -365,7 +365,7 @@ class Gem::TestCase < (defined?(Minitest::Test) ? Minitest::Test : MiniTest::Uni
 
     @marshal_version = "#{Marshal::MAJOR_VERSION}.#{Marshal::MINOR_VERSION}"
     @orig_LOADED_FEATURES = $LOADED_FEATURES.dup
-    puts "\nRSS: #{`ps -orss= -p#{Process.pid}`.to_i / 1024.0} MB; free: #{`free -wm`.lines[0..1].map { |l| l.split[-7..-1] }.inject(:zip).to_h}"
+    puts "\nRSS: #{`ps -orss= -p#{Process.pid}`}"
   end
 
   ##
