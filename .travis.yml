@@ -13,6 +13,9 @@ matrix:
       before_install:
         - rvm system # 'rvm system' after, otherwise TravisCI tries to 'gem install bundler' and that fails as non-root
         - pyenv local 2.7.15 # Otherwise pyenv prepends /usr/bin to $PATH, https://github.com/pyenv/pyenv/issues/789
+        - free -m
+        - ruby -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
+        - free -m
         - git clone --depth 1 --branch rubygems-fixes https://github.com/eregon/truffleruby.git
         - git clone --depth 1 --branch current-truffleruby-import https://github.com/eregon/graal.git
         - truffleruby/tool/jt.rb build
@@ -21,5 +24,11 @@ matrix:
 before_script:
   - util/ci.sh before_script
 script:
+  - free -m
+  - ruby -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
+  - free -m
+  - echo 1 | sudo tee /proc/sys/vm/drop_caches
+  - free -m
+  - ruby -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
   - free -m
   - util/ci.sh script
