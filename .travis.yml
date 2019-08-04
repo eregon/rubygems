@@ -25,10 +25,10 @@ before_script:
   - util/ci.sh before_script
 script:
   - free -m
-  - ruby -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
+  - ruby --vm.Xmx8g -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
   - free -m
   - echo 1 | sudo tee /proc/sys/vm/drop_caches
   - free -m
-  - ruby -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
+  - ruby --vm.Xmx8g -e 'a=[]; loop { a << "a"*(100*1024*1024); p a.size*100 }' || true
   - free -m
   - util/ci.sh script
