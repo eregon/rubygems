@@ -365,6 +365,7 @@ class Gem::TestCase < (defined?(Minitest::Test) ? Minitest::Test : MiniTest::Uni
 
     @marshal_version = "#{Marshal::MAJOR_VERSION}.#{Marshal::MINOR_VERSION}"
     @orig_LOADED_FEATURES = $LOADED_FEATURES.dup
+    puts "\nRSS: #{`ps -orss= -p#{Process.pid}`}"
   end
 
   ##
