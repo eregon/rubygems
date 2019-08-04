@@ -16,15 +16,15 @@ begin
 rescue Gem::LoadError
 end
 
-begin
-  require 'simplecov'
-  SimpleCov.start do
-    add_filter "/test/"
-    add_filter "/bundler/"
-    add_filter "/lib/rubygems/resolver/molinillo"
-  end
-rescue LoadError
-end
+# begin
+#   require 'simplecov'
+#   SimpleCov.start do
+#     add_filter "/test/"
+#     add_filter "/bundler/"
+#     add_filter "/lib/rubygems/resolver/molinillo"
+#   end
+# rescue LoadError
+# end
 
 require 'bundler'
 
