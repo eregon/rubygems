@@ -9,6 +9,7 @@ on:
 
 jobs:
   windows_bundler:
+    if: false
     runs-on: windows-latest
 
     strategy:
