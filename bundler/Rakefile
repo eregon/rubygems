@@ -103,6 +103,7 @@ namespace :man do
 
         file "#{roff}.txt" => roff do
           sh "groff -Wbreak -mtty-char -mandoc -Tascii -rHY=0 #{roff} | col -xb > #{roff}.txt"
+          File.write("#{roff}.txt", File.read("#{roff}.txt").gsub(/(2\d|\d)m/, ''))
         end
 
         task :build_all_pages => "#{roff}.txt"
